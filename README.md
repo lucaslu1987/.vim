@@ -1,12 +1,5 @@
-Maple's Vim config
+lucas's Vim config
 ==================
-
-I use `vundle` to manage my plugins, which makes my `.vim` directory clean and tidy. If you are new to vim, the following two posts
-
-* [Vim Introduction and Tutorial](http://blog.interlinked.org/tutorials/vim_tutorial.html)
-* [Vim plugins I use](http://mirnazim.org/writings/vim-plugins-i-use/)
-
-will be good for you.
 
 #### Most of the time we are writing code so we need:
 ## Code Completions
@@ -222,8 +215,9 @@ Clone in Mac
 
 2. Clone and install this repo:
 
-        git clone git://github.com/humiaozuzu/dot-vimrc.git ~/.vim
-        ln -s ~/.vim/vimrc ~/.vimrc
+        git clone git://github.com/lucaslu1987/.vim.git ~/.vim
+        cd .vim
+        sh install.sh
 
 3. Setup `Vundle`:
 
