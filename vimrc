@@ -31,7 +31,8 @@ set smartcase
 " editor settings
 set history=1000
 set nocompatible
-set nofoldenable                                                  " disable folding"
+set foldenable                                                    " enable folding"
+set foldmethod=manual                                             " fold manually
 set confirm                                                       " prompt when existing from an unsaved file
 set backspace=indent,eol,start                                    " More powerful backspacing
 set t_Co=256                                                      " Explicitly tell vim that the terminal has 256 colors "
@@ -58,6 +59,11 @@ set shiftwidth=4    " indent width
 " set smarttab
 set expandtab       " expand tab to space
 
+" auto read and write
+set autoread
+set autowrite
+
+
 autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
@@ -72,6 +78,41 @@ autocmd Syntax javascript set syntax=jquery   " JQuery syntax support
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd BufNewFile *.cpp,*.c exec ":call SetCTitle()" 
+""  define the title, insert when the file is newbiew
+func SetCTitle() 
+        call setline(1, "/*************************************************************************") 
+        call append(line("."), "    > File Name: ".expand("%")) 
+        call append(line(".")+1, "    > Author: lucas lu") 
+        call append(line(".")+2, "    > Mail: lucaslu1987@hotmail.com ") 
+        "call append(line(".")+3, "    > Created Time: ".strftime("%c")) 
+        call append(line(".")+3, "    > Created Time: ".strftime("%Y-%m-%d",localtime()))
+        call append(line(".")+4, " ************************************************************************/") 
+        call append(line(".")+5, "")
+    " new file relocate the last line
+    autocmd BufNewFile * normal G
+endfunc 
+
+" Suzzz：add title when create python file
+
+autocmd BufNewFile *py exec ":call SetPythonTitle()"
+
+func SetPythonTitle()
+    call setline(1,"#!/usr/bin/env python")
+    call append( line("."),"#-*- coding: utf-8 -*-" )
+    call append(line(".")+1," ")
+    call append(line(".")+2, "\# File Name: ".expand("%")) 
+    call append(line(".")+3, "\# Author: lucas lu") 
+    call append(line(".")+4, "\# mail: lucaslu1987@hotmail.com") 
+    call append(line(".")+5, "\# Created Time: ".strftime("%Y-%m-%d",localtime()))    
+endfunc
+
+
 
 "-----------------
 " Plugin settings
