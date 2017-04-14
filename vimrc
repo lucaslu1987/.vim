@@ -31,8 +31,6 @@ set smartcase
 " editor settings
 set history=1000
 set nocompatible
-set foldenable                                                    " enable folding"
-set foldmethod=manual                                             " fold manually
 set confirm                                                       " prompt when existing from an unsaved file
 set backspace=indent,eol,start                                    " More powerful backspacing
 set t_Co=256                                                      " Explicitly tell vim that the terminal has 256 colors "
@@ -62,6 +60,14 @@ set expandtab       " expand tab to space
 " auto read and write
 set autoread
 set autowrite
+
+" fold  relative
+set foldenable                                                    " enable folding"
+set foldmethod=syntax                                             " fold manually
+set foldcolumn=0                                                  " fold width
+setlocal foldlevel=9999
+set foldclose=all                                                 " close fold when open
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>      " use space key to open and close fold
 
 
 autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
